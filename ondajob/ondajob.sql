@@ -1,18 +1,13 @@
--- ============================================================
--- Onda Job — MySQL Database Schema
--- Run this in phpMyAdmin or MySQL CLI to create the database
--- ============================================================
-
 CREATE DATABASE IF NOT EXISTS `ondajob` 
   CHARACTER SET utf8mb4 
   COLLATE utf8mb4_unicode_ci;
 
 USE `ondajob`;
 
--- Users table
 CREATE TABLE IF NOT EXISTS `users` (
   `id` INT AUTO_INCREMENT PRIMARY KEY,
   `first_name` VARCHAR(100) NOT NULL,
+  `middle_name` VARCHAR(100),
   `last_name` VARCHAR(100) NOT NULL,
   `email` VARCHAR(255) NOT NULL UNIQUE,
   `phone` VARCHAR(20),
@@ -89,7 +84,7 @@ CREATE TABLE IF NOT EXISTS `jobs` (
   `title` VARCHAR(200) NOT NULL,
   `description` TEXT,
   `location` VARCHAR(200),
-  `job_type` ENUM('full-time','part-time','contract','freelance','internship') DEFAULT 'full-time',
+  `job_type` ENUM('full-time','part-time') DEFAULT 'full-time',
   `work_setup` ENUM('remote','on-site','hybrid') DEFAULT 'on-site',
   `experience_level` ENUM('entry','mid','senior','lead','manager','director') DEFAULT 'mid',
   `salary_min` INT,
